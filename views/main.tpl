@@ -57,6 +57,14 @@
     <button type="button" class="btn btn-warning" id="DERP">Derp</button>
     <button type="button" class="btn btn-danger">Pherp</button>
     <button type="button" class="btn btn-inverse" onclick="proceed();">Merp</button>
+    </div>
+    <div class="container">
+   <form id="send-message">
+        <input id="name" type="text" value="name">
+        <input id="message" type="text" value="message" />
+        <input type="submit" value="Send" />
+    </form>
+    <div id="messages"></div>
 </div>
       {{ content }}
 
@@ -86,6 +94,30 @@
       url: "/derp",
       });
       });
+      $(document).ready(function() {
+      if (!window.WebSocket) {
+      if (window.MozWebSocket) {
+      window.WebSocket = window.MozWebSocket;
+      } else {
+      $('#messages').append("<li>Your browser doesn't support WebSockets.</li>");
+      }
+      }
+      ws = new WebSocket('ws://0.0.0.0:5000/websocket');
+      ws.onopen = function(evt) {
+      $('#messages').append('<li>Connected to chat.</li>');
+      }
+      ws.onmessage = function(evt) {
+      $('#messages').append('<li>' + evt.data + '</li>');
+      }
+      $('#send-message').submit(function() {
+      ws.send($('#name').val() + ": " + $('#message').val());
+      $('#message').val('').focus();
+      return false;
+      });
+      });
+    </script>
+
+
     </script>
     <script src="/js/bootstrap-typeahead.js"></script>
 
