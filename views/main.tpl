@@ -102,7 +102,7 @@
       $('#messages').append("<li>Your browser doesn't support WebSockets.</li>");
       }
       }
-      ws = new WebSocket('ws://0.0.0.0:5000/websocket');
+      ws = new WebSocket('ws://192.168.1.42:5000/websocket');
       ws.onopen = function(evt) {
       $('#messages').append('<li>Connected to chat.</li>');
       }
