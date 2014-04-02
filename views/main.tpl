@@ -53,9 +53,9 @@
 
     <div class="container">
 <div class="btn-group">
-    <button type="button" class="btn btn-primary" type=submit formaction="/merp/">Herp</button>
-    <button type="button" class="btn btn-warning" id="DERP">Derp</button>
-    <button type="button" class="btn btn-danger">Pherp</button>
+    <button type="button" class="btn btn-primary" id="BUZZ">buzz</button>
+    <button type="button" class="btn btn-warning" id="FEED">feed</button>
+    <button type="button" class="btn btn-danger" id="PICS">pics</button>
     <button type="button" class="btn btn-inverse" onclick="proceed();">Merp</button>
     </div>
     <div class="container">
@@ -87,13 +87,31 @@
     <script src="/js/bootstrap-collapse.js"></script>
     <script src="/js/bootstrap-carousel.js"></script>
     <script type="text/javascript">
-      $('#DERP').on('click', function (e) {
+      $('#BUZZ').on('click', function (e) {
       alert( "FUCK IT!!!" );
       $.ajax({
       type: "POST",
-      url: "/derp",
+      url: "/buzz",
       });
       });
+
+      $('#FEED').on('click', function (e) {
+      alert( "FUCK IT!!!" );
+      $.ajax({
+      type: "POST",
+      url: "/feed",
+      });
+      });
+
+      $('#PICS').on('click', function (e) {
+      alert( "FUCK IT!!!" );
+      $.ajax({
+      type: "POST",
+      url: "/pics",
+      });
+      });
+
+
       $(document).ready(function() {
       if (!window.WebSocket) {
       if (window.MozWebSocket) {

@@ -13,7 +13,7 @@ myQ = []
 def notify_click():
     print "Click"
     for u in users:
-        u.send("CLICK CLICK")
+        u.send("feed us!!!")
 
     #myQ.append("CLICK CLICK")
 
@@ -40,14 +40,23 @@ def merp():
     return dict(title="MERP",content="MERP!")
 
 
-@post("/derp")
+@post("/buzz")
 def derp():
     myhw.buzz_once()
     for u in users:
-        u.send("DERP DERP DERP")
-    print "DERP DERP DERP"
+        u.send("buzz")
+
+@post("/feed")
+def derp():
+    myhw.dispense()
+    for u in users:
+        u.send("feed")
+
+@post("/pics")
+def derp():
     myhw.power_down()
     myhw.join()
+
 
 @route("/")
 @view("main")
