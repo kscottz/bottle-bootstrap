@@ -8,6 +8,7 @@ from bottle.ext.websocket import websocket
 import time
 import gevent
 import HardwareInterface as hw
+import picamera
 myQ = []
 
 def notify_click():
@@ -34,28 +35,38 @@ def img_static(filename):
     return static_file(filename, root='./css')
 
 
-@route("/merp")
-@view("main")
+@post("/merp")
 def merp():
-    return dict(title="MERP",content="MERP!")
+    myhw.power_down()
+    myhw.join()
 
 
 @post("/buzz")
-def derp():
+def buzz():
     myhw.buzz_once()
     for u in users:
         u.send("buzz")
 
 @post("/feed")
-def derp():
+def dispense():
     myhw.dispense()
     for u in users:
         u.send("feed")
 
-@post("/pics")
-def derp():
-    myhw.power_down()
-    myhw.join()
+
+@route("/pics")
+@view("live")
+def live():
+    with picamera.PiCamera() as camera:
+        camera.resolution = (640, 480)
+        #camera.start_preview()
+        # Camera warm-up time
+        time.sleep(0.5)
+        camera.capture('img/live.jpg')
+    return dict(title = "Hello", button="derp2", content = '''
+    Hello from Python!
+
+    ''')
 
 
 @route("/")
