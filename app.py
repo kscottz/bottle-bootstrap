@@ -46,7 +46,7 @@ def merp():
     myhw.power_down()
     myhw.join()
     myci.shutdown()
-    myhhw.join()
+    myhw.join()
 
 @post("/buzz")
 def buzz():

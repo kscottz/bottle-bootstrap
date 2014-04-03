@@ -129,6 +129,7 @@
       $('#messages').append('<li>Connected to chat.</li>');
       }
       ws.onmessage = function(evt) {
+      $('#messages').empty();
       $('#messages').append('<li>' + evt.data + '</li>');
       }
       $('#send-message').submit(function() {
