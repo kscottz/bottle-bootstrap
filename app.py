@@ -27,9 +27,9 @@ myci = ci.CameraInterface('./img/live.jpg')
 myhw.on_button_up(notify_click)
 myhw.on_button_up(myData.log_press)
 myhw.on_buzz(myData.log_buzz)
-myhw.on_feed(myData.log_feed)
+myhw.on_feed(myData.log_food)
 myci.set_motion_callback(notify_motion)
-myci.set_motion_callback(myData.log_activity())
+myci.set_motion_callback(myData.log_activity)
 
 myci.start()
 myhw.start()
@@ -70,14 +70,17 @@ def dispense():
 @route("/pics")
 @view("live")
 def live():
-    # with picamera.PiCamera() as camera:
-    #     camera.resolution = (640, 480)
-    #     #camera.start_preview()
-    #     # Camera warm-up time
-    #     time.sleep(0.5)
-    #     camera.capture('img/live.jpg')
     return dict(title = "Hello", button="derp2", content = '''
     Hello from Python!
+
+    ''')
+
+@route("/activity")
+@view("activity")
+def live():
+    myData.generateActivity('./img/activity.png')
+    return dict(title = "Activity Monitor", button="derp2", content = '''
+    Check out what the wee beasties are doing!
 
     ''')
 
