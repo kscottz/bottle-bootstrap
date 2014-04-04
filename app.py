@@ -78,8 +78,8 @@ def live():
 @route("/activity")
 @view("activity")
 def live():
-    myData.generateActivity('./img/activity.png')
-    return dict(title = "Activity Monitor", button="derp2", content = '''
+    myData.generateActivity('./img/activity.svg')
+    return dict(title = "Activity Monitor", content = '''
     Check out what the wee beasties are doing!
 
     ''')

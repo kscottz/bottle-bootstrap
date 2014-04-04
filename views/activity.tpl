@@ -57,7 +57,7 @@
     <div class="container">
 </div>
     <div class="container">
-      <img src="/img/activity.png">
+      <img src="/img/activity.svg">
     </div>
 
       {{ content }}
