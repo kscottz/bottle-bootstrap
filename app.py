@@ -9,8 +9,8 @@ import time
 import gevent
 import HardwareInterface as hw
 import CameraInterface as ci
+import DataInterface as di
 import picamera
-myQ = []
 
 def notify_click():
     print "Click"
@@ -21,10 +21,16 @@ def notify_motion(change):
     for u in users:
         u.send("Change: {0}".format(change))
     
+myData = di.DataInterface()
 myhw = hw.HardwareInterface()
 myci = ci.CameraInterface('./img/live.jpg')
 myhw.on_button_up(notify_click)
+myhw.on_button_up(myData.log_press)
+myhw.on_buzz(myData.log_buzz)
+myhw.on_feed(myData.log_feed)
 myci.set_motion_callback(notify_motion)
+myci.set_motion_callback(myData.log_activity())
+
 myci.start()
 myhw.start()
 
